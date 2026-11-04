@@ -1,0 +1,146 @@
+:root {
+  --fundo: #f4f6f7;
+  --superficie: #ffffff;
+  --texto: #1b2630;
+  --texto-suave: #586673;
+  --borda: #d6dde2;
+  --principal: #0e6a6a;
+  --principal-escuro: #0a5252;
+  --perigo: #b3261e;
+  --perigo-escuro: #8c1d17;
+  --destaque: #e6f3f2;
+  --fonte: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte);
+  line-height: 1.5;
+}
+
+.pagina {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.cabecalho h1 { margin: 0; font-size: 1.9rem; letter-spacing: -0.02em; }
+.cabecalho p { margin: 0.25rem 0 1.75rem; color: var(--texto-suave); }
+
+/* Mobile primeiro: uma coluna. A partir de 860px, formulário ao lado da lista. */
+.layout { display: grid; gap: 1.25rem; }
+@media (min-width: 860px) {
+  .layout { grid-template-columns: 340px 1fr; align-items: start; }
+  .layout > .painel:first-child { position: sticky; top: 1rem; }
+}
+
+.painel {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+.painel h2 { margin: 0 0 1rem; font-size: 1.1rem; }
+.painel-topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+.painel-topo h2 { margin: 0; }
+
+.formulario { display: flex; flex-direction: column; gap: 0.9rem; }
+.campo { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; font-weight: 600; }
+.painel > .campo { margin-bottom: 1rem; }
+
+input {
+  font: inherit;
+  font-weight: 400;
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--texto);
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: var(--principal);
+  color: #fff;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { background: var(--principal-escuro); }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+button.secundario { background: #fff; color: var(--texto); border-color: var(--borda); }
+button.secundario:hover:not(:disabled) { background: var(--fundo); }
+
+button.perigo { background: #fff; color: var(--perigo); border-color: var(--perigo); }
+button.perigo:hover:not(:disabled) { background: var(--perigo); color: #fff; }
+
+input:focus-visible, button:focus-visible {
+  outline: 3px solid #6aa9ff;
+  outline-offset: 2px;
+}
+
+.botoes { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.aviso { margin: 1rem 0 0; padding: 0.6rem 0.8rem; border-radius: 6px; font-size: 0.92rem; }
+.aviso-sucesso { background: #dcf3e6; color: #11562f; }
+.aviso-erro { background: #fbe0de; color: #8c1d17; }
+
+.mensagem { margin: 0.5rem 0 0; color: var(--texto-suave); }
+.mensagem-erro { color: var(--perigo); }
+
+.lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+
+.item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 0.9rem;
+  align-items: center;
+  padding: 0.8rem;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+}
+.item-editando { background: var(--destaque); border-color: var(--principal); }
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: var(--principal);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.dados { display: flex; flex-direction: column; min-width: 0; }
+.dados span { color: var(--texto-suave); overflow-wrap: anywhere; }
+.dados small { color: var(--texto-suave); }
+
+.acoes { grid-column: 1 / -1; display: flex; gap: 0.5rem; }
+.acoes button { flex: 1; }
+
+@media (min-width: 560px) {
+  .item { grid-template-columns: auto 1fr auto; }
+  .acoes { grid-column: auto; }
+  .acoes button { flex: none; padding: 0.45rem 0.8rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  button { transition: background-color 0.15s; }
+}
